@@ -11,6 +11,7 @@ using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Interactions;
 using NUnit.Framework;
+
 [TestFixture]
 public class TC01IfUserIsInvalidTryAgainTest
 {
@@ -18,20 +19,20 @@ public class TC01IfUserIsInvalidTryAgainTest
     public IDictionary<string, object> vars { get; private set; }
     private IJavaScriptExecutor js;
 
-    [SetUp]
-    public void SetUp()
-    {
-        ChromeOptions options = new ChromeOptions();
-        options.AddArguments("headless");
-        options.AddArguments("no-sandbox");
-        options.AddArguments("disable-dev-shm-usage");
-        options.AddArguments("disable-gpu");
-        options.AddArguments("window-size1920x1080");
+  [SetUp]
+public void SetUp()
+{
+    ChromeOptions options = new ChromeOptions();
+    options.AddArgument("--headless=new");
+    options.AddArgument("--no-sandbox");
+    options.AddArgument("--disable-dev-shm-usage");
+    options.AddArgument("--disable-gpu");
+    options.AddArgument("--window-size=1920,1080");
 
-        driver = new ChromeDriver();
-        js = (IJavaScriptExecutor)driver;
-        vars = new Dictionary<string, object>();
-    }
+    driver = new ChromeDriver(options);
+    js = (IJavaScriptExecutor)driver;
+    vars = new Dictionary<string, object>();
+}
 
     [TearDown]
     protected void TearDown()
